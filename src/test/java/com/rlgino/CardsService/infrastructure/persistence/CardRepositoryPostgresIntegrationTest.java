@@ -6,10 +6,10 @@ import com.rlgino.CardsService.domain.CardNumber;
 import com.rlgino.CardsService.infrastructure.persistence.postgres.CardRepositoryPostgres;
 import com.rlgino.CardsService.infrastructure.PostgresContainerTest;
 import com.rlgino.CardsService.domain.CardNumberMother;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

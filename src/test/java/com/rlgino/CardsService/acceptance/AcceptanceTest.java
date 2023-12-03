@@ -6,6 +6,7 @@ import com.rlgino.CardsService.infrastructure.PostgresContainerTest;
 import com.rlgino.CardsService.CardsServiceApplication;
 import com.rlgino.CardsService.domain.CardNumberMother;
 import com.rlgino.CardsService.domain.CardRepository;
+import jakarta.servlet.ServletContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,7 +21,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.ServletContext;
 import java.nio.charset.StandardCharsets;
 
 import static org.junit.jupiter.api.Assertions.*;
