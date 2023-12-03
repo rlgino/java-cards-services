@@ -1,12 +1,11 @@
 package com.rlgino.CardsService.infrastructure.persistence.postgres;
 
 import com.rlgino.CardsService.domain.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Getter
 @Setter
