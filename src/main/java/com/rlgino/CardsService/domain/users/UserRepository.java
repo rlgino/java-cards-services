@@ -1,4 +1,4 @@
-package com.rlgino.CardsService.domain;
+package com.rlgino.CardsService.domain.users;
 
 import java.util.Optional;
 

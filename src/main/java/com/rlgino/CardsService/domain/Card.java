@@ -1,16 +1,21 @@
 package com.rlgino.CardsService.domain;
 
+import com.rlgino.CardsService.domain.users.UserID;
+
 public final class Card {
     private CardNumber cardNumber;
     private final Brand brand;
     private final CardHolder cardHolder;
     private final CardDueDate cardDueDate;
 
-    public Card(CardNumber cardNumber, Brand brand, CardHolder cardHolder, CardDueDate cardDueDate) {
+    private final UserID userID;
+
+    public Card(CardNumber cardNumber, Brand brand, CardHolder cardHolder, CardDueDate cardDueDate, UserID userID) {
         this.cardNumber = cardNumber;
         this.brand = brand;
         this.cardHolder = cardHolder;
         this.cardDueDate = cardDueDate;
+        this.userID = userID;
     }
 
     public Boolean isValidToOperate() {
@@ -31,6 +36,10 @@ public final class Card {
 
     public CardDueDate dueDate() {
         return this.cardDueDate;
+    }
+
+    public UserID userID() {
+        return userID;
     }
 
     @Override

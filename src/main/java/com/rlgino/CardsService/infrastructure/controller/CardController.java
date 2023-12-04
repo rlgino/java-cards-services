@@ -4,9 +4,9 @@ import com.rlgino.CardsService.application.CardCreator;
 import com.rlgino.CardsService.application.CardFinder;
 import com.rlgino.CardsService.domain.*;
 import com.rlgino.CardsService.domain.exception.CardNotFoundException;
+import com.rlgino.CardsService.domain.users.UserID;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -42,7 +42,7 @@ public class CardController {
         try {
             final CardNumber cardNumber = new CardNumber(id);
             Card cardResult = this.cardFinder.call(cardNumber);
-            CardDTO response = new CardDTO(cardResult.cardNumber().toString(), cardResult.brand().toString(), cardResult.cardHolder().toString(), "", cardResult.dueDate().toString());
+            CardDTO response = new CardDTO(cardResult.cardNumber().toString(), cardResult.brand().toString(), cardResult.cardHolder().toString(), "", cardResult.dueDate().toString(), "TBD");
             return new ResponseEntity<>(response, HttpStatus.OK);
         } catch (CardNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -66,7 +66,8 @@ public class CardController {
                 return new ResponseEntity<>("Marca inválida", HttpStatus.BAD_REQUEST);
             final Brand brand = Brand.valueOf(createCardRequest.getBrand());
             final CardHolder cardHolder = new CardHolder(createCardRequest.getName(), createCardRequest.getLastName());
-            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDate())));
+            final UserID userID = UserID.from(createCardRequest.getUserID());
+            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDate()), userID), userID.toString());
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Marca inválida", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
@@ -82,13 +83,15 @@ final class CardDTO {
     private String name;
     private String lastName;
     private String date;
+    private String userID;
 
-    public CardDTO(String cardNumber, String brand, String name, String lastName, String date) {
+    public CardDTO(String cardNumber, String brand, String name, String lastName, String date, String userID) {
         this.cardNumber = cardNumber;
         this.brand = brand;
         this.name = name;
         this.lastName = lastName;
         this.date = date;
+        this.userID = userID;
     }
 
     public String getCardNumber() {
@@ -110,4 +113,9 @@ final class CardDTO {
     public String getBrand() {
         return brand;
     }
+
+    public String getUserID() {
+        return userID;
+    }
+
 }
