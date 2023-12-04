@@ -88,8 +88,20 @@ Design the system to be horizontally (with TDD and Injection Dependency) and ver
 Establish a maintenance plan to apply updates and security fixes regularly. Ensure that the code is maintainable in the long term.
 * At this stage, the proposal plan is getting maintenance every one month, keeping update every dependency and adding new features.
 
-## Repository
-[Java Challenge](https://github.com/rlgino/java-challenge-cards)
+## Protocol buffer integration
+
+For protobuf integration you have [to install protobuf](https://github.com/protocolbuffers/protobuf/releases).
+Then add the next dependency:
+````groovy
+implementation 'com.google.protobuf:protobuf-java:3.25.1'
+````
+You need to generate protobuf files, you can get that running the next code: 
+`protoc -I=. --java_out=. com/rlgino/CardsService/infrastructure/usersproto/users.proto` 
+in the directory `src/main/java/`
+
+## Associated Repositories
+[Java Cards service](https://github.com/rlgino/java-cards-services)
+[Go User Service](https://github.com/rlgino/go-users-service)
 
 ## Tools and techniques
 * TDD
@@ -102,6 +114,7 @@ Establish a maintenance plan to apply updates and security fixes regularly. Ensu
 * [DB Integration Tests with Spring](https://www.baeldung.com/spring-boot-testcontainers-integration-test)
 * [Setup Spring Boot Database Integration Tests With Testcontainers](https://medium.com/tech-takeaways/setup-spring-boot-database-integration-tests-with-testcontainers-e578ced929)
 * [Spring Boot + Swagger 3 example (with OpenAPI 3) - BezKoder](https://www.bezkoder.com/spring-boot-swagger-3/)
+* [Introduction to Google Protocol Buffer](https://www.baeldung.com/google-protocol-buffer)
 
 ### Next steps:
-TBD
+Adding protobuf integration...

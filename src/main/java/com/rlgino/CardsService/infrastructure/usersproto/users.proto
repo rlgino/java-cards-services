@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package usersproto;
+option go_package = "grpcServer/users";
+option java_package = "com.rlgino.CardsService.infrastructure.usersproto";
+option java_generic_services = true;
+
+message User {
+  enum ItemStatus {
+    INACTIVE = 0;
+    ACTIVE = 1;
+  }
+
+  string id = 1;
+  string name = 2;
+  ItemStatus status = 3;
+}
+
+message SearchRequest {
+  string user = 1;
+}
+
+service UserService {
+  rpc SearchUser(SearchRequest) returns (User);
+}
