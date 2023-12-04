@@ -4,6 +4,13 @@ import com.rlgino.CardsService.application.CardCreator;
 import com.rlgino.CardsService.application.CardFinder;
 import com.rlgino.CardsService.domain.*;
 import com.rlgino.CardsService.domain.exception.CardNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/card")
+@Tag(name = "card", description = "Manage card objects")
 public class CardController {
 
     private final CardCreator cardCreator;
@@ -22,6 +30,13 @@ public class CardController {
         this.cardFinder = cardFinder;
     }
 
+    @Operation(summary = "Getting a card by ID",
+            description = "Getting all details of a card",
+            tags = { "cards", "get" })
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", content = { @Content(schema = @Schema(implementation = CardDTO.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema()) }),
+    })
     @GetMapping("/{id}")
     public ResponseEntity<CardDTO> findCard(@PathVariable String id) {
         try {
@@ -36,6 +51,13 @@ public class CardController {
         }
     }
 
+    @Operation(summary = "Creating a card",
+            description = "Creating a card with required details",
+            tags = { "cards", "post" })
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", content = { @Content(schema = @Schema(implementation = CardDTO.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema()) }),
+    })
     @PostMapping
     public ResponseEntity<String> CreateCard(@RequestBody CardDTO createCardRequest) {
         try {

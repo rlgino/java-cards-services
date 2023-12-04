@@ -4,6 +4,7 @@ import com.rlgino.CardsService.domain.Brand;
 import com.rlgino.CardsService.application.TaxInterestExecutor;
 import com.rlgino.CardsService.domain.Percentage;
 import com.rlgino.CardsService.domain.exception.NotBrandCardException;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/operation")
+@Tag(name = "operation", description = "Making some operations with the API")
 public class OperationController {
     private final TaxInterestExecutor taxCalculator;
 

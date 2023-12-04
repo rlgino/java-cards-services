@@ -51,7 +51,9 @@ In this case I'm using Java because it's one of the most known object-oriented p
 stack for building API and applications with all the SDK.
 
 ## End-points documentation
-Define an API documentation (with Open API).
+Define an API documentation (with Open API). 
+For this case, I added a new library for document API end-points, the dependency `springdoc-openapi-starter-webmvc-ui` will help to generate the OAS document.
+You can see the generated documentation in `http://localhost:8080/swagger-ui/index.html`. Or you can see the swagger-oas.json file in `http://localhost:8080/api-docs`
 
 ## Security implementation
 TBD
@@ -83,8 +85,8 @@ Design the system to be horizontally (with TDD and Injection Dependency) and ver
 
 ## Maintenance:
 
-
-Establish a maintenance plan to apply updates and security fixes regularly. Ensure that the code is maintainable in the long term. (TBD)
+Establish a maintenance plan to apply updates and security fixes regularly. Ensure that the code is maintainable in the long term.
+* At this stage, the proposal plan is getting maintenance every one month, keeping update every dependency and adding new features.
 
 ## Repository
 [Java Challenge](https://github.com/rlgino/java-challenge-cards)
@@ -99,6 +101,7 @@ Establish a maintenance plan to apply updates and security fixes regularly. Ensu
 * [Integration Testing by Baeldung](https://www.baeldung.com/integration-testing-in-spring)
 * [DB Integration Tests with Spring](https://www.baeldung.com/spring-boot-testcontainers-integration-test)
 * [Setup Spring Boot Database Integration Tests With Testcontainers](https://medium.com/tech-takeaways/setup-spring-boot-database-integration-tests-with-testcontainers-e578ced929)
+* [Spring Boot + Swagger 3 example (with OpenAPI 3) - BezKoder](https://www.bezkoder.com/spring-boot-swagger-3/)
 
 ### Next steps:
-* [Using PostgreSQL with Spring Boot on AWS](https://aws.amazon.com/blogs/opensource/using-a-postgresql-database-with-amazon-rds-and-spring-boot/)
+TBD
