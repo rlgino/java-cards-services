@@ -4,6 +4,7 @@ import com.rlgino.CardsService.domain.*;
 import com.rlgino.CardsService.domain.events.CardCreatedEvent;
 import com.rlgino.CardsService.domain.exception.UserNotFoundException;
 import com.rlgino.CardsService.domain.users.User;
+import com.rlgino.CardsService.domain.users.UserID;
 import com.rlgino.CardsService.domain.users.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,10 @@ public class CardCreatorShouldTest {
     @Test
     public void createACardSuccessfully(){
         Card card = CardMother.createCardRandom();
-        String userID = "1c4425e2-308a-4ced-82f3-dd050342c8c7";
-        when(this.userRepository.findUserByID(userID)).thenReturn(Optional.of(new User()));
+        final UserID userID = UserIDMother.generate();
+        when(this.userRepository.findUserByID(userID.toString())).thenReturn(Optional.of(new User()));
 
-        this.creator.Execute(card, userID);
+        this.creator.Execute(card, userID.toString());
 
         verify(this.cardRepository, times(1)).SaveCard(card);
         verify(this.event, times(1)).Send(card);
