@@ -89,15 +89,27 @@ Establish a maintenance plan to apply updates and security fixes regularly. Ensu
 * At this stage, the proposal plan is getting maintenance every one month, keeping update every dependency and adding new features.
 
 ## Protocol buffer integration
-
-For protobuf integration you have [to install protobuf](https://github.com/protocolbuffers/protobuf/releases).
-Then add the next dependency:
+1. Add the plugin downloading from https://mvnrepository.com/artifact/io.grpc/protoc-gen-grpc-java/1.59.1, view files and download your version.
+2. Download the plugin into the root project with the name `protoc-gen-grpc-java.exe`
+3. For protobuf integration you have [to install protobuf](https://github.com/protocolbuffers/protobuf/releases)(I used Go for installing the plugin).
+4. Then add the next dependency:
 ````groovy
-implementation 'com.google.protobuf:protobuf-java:3.25.1'
+implementation 'com.google.protobuf:protobuf-java:3.25.0'
+implementation 'io.grpc:protoc-gen-grpc-java:1.59.1'
+implementation group: 'io.grpc', name: 'grpc-stub', version: '1.59.1'
+implementation group: 'io.grpc', name: 'grpc-protobuf', version: '1.59.1'
+implementation group: 'io.grpc', name: 'grpc-netty', version: '1.59.1'
 ````
-You need to generate protobuf files, you can get that running the next code: 
+
+5. You need to generate protobuf files, you can get that running the next code: 
 `protoc -I=. --java_out=. com/rlgino/CardsService/infrastructure/usersproto/users.proto` 
-in the directory `src/main/java/`
+````shell
+protoc --plugin=protoc-gen-grpc-java=${PWD}/protoc-gen-grpc-java.exe \
+  -I=src/main/resources \
+  --java_out=src/main/java \
+  --grpc-java_out=src/main/java \
+  src/main/resources/users.proto
+````
 
 ## Associated Repositories
 [Java Cards service](https://github.com/rlgino/java-cards-services)
@@ -115,6 +127,7 @@ in the directory `src/main/java/`
 * [Setup Spring Boot Database Integration Tests With Testcontainers](https://medium.com/tech-takeaways/setup-spring-boot-database-integration-tests-with-testcontainers-e578ced929)
 * [Spring Boot + Swagger 3 example (with OpenAPI 3) - BezKoder](https://www.bezkoder.com/spring-boot-swagger-3/)
 * [Introduction to Google Protocol Buffer](https://www.baeldung.com/google-protocol-buffer)
+* [gRPC Java Codegen Plugin for Protobuf Compiler](https://github.com/grpc/grpc-java/blob/master/compiler/README.md)
 
 ### Next steps:
 Adding protobuf integration...
