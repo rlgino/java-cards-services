@@ -23,4 +23,16 @@ public class UserID {
     public String toString() {
         return userID.toString();
     }
+
+    @Override
+    public int hashCode() {
+        return userID.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof UserID otherUserID)
+            return this.userID.equals(otherUserID.userID);
+        return false;
+    }
 }

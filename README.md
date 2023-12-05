@@ -112,6 +112,25 @@ protoc --plugin=protoc-gen-grpc-java=${PWD}/protoc-gen-grpc-java.exe \
   src/main/resources/users.proto
 ````
 
+### Testing GRPC repository calling
+For testing proposes I faced an issue with acceptance tests, putting a mock in GRPC layer.
+For fixing this issue I had to add the next annotation to `AcceptanceTest.java`
+````java
+@ContextConfiguration(classes = {CardsServiceApplication.class,AcceptanceTestConfiguration.class})
+````
+
+Also, this is the `AcceptanceTestConfiguration.java` code:
+````java
+@Configuration
+public class AcceptanceTestConfiguration {
+    @Primary
+    @Bean
+    public UserRepository userRepository() {
+        return mock(UserRepository.class);
+    }
+}
+````
+
 ## Associated Repositories
 [Java Cards service](https://github.com/rlgino/java-cards-services)
 [Go User Service](https://github.com/rlgino/go-users-service)
@@ -131,4 +150,5 @@ protoc --plugin=protoc-gen-grpc-java=${PWD}/protoc-gen-grpc-java.exe \
 * [gRPC Java Codegen Plugin for Protobuf Compiler](https://github.com/grpc/grpc-java/blob/master/compiler/README.md)
 
 ### Next steps:
+Add Either [from baeldung](https://www.baeldung.com/vavr-either)
 Add some design patterns
