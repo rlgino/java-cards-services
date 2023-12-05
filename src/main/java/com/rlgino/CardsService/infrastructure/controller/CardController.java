@@ -67,7 +67,7 @@ public class CardController {
             final Brand brand = Brand.valueOf(createCardRequest.getBrand());
             final CardHolder cardHolder = new CardHolder(createCardRequest.getName(), createCardRequest.getLastName());
             final UserID userID = UserID.from(createCardRequest.getUserID());
-            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDate()), userID), userID.toString());
+            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDate()), userID));
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Marca inválida", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {

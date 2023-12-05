@@ -2,6 +2,7 @@ package com.rlgino.CardsService.infrastructure.usersproto;
 
 
 import com.rlgino.CardsService.domain.users.User;
+import com.rlgino.CardsService.domain.users.UserID;
 import com.rlgino.CardsService.domain.users.UserRepository;
 import io.grpc.ManagedChannelBuilder;
 
@@ -18,8 +19,8 @@ public class UsersProtoRepository implements UserRepository {
     }
 
     @Override
-    public Optional<User> findUserByID(String id) {
-        SearchRequest searchRequest = SearchRequest.newBuilder().setUser(id).build();
+    public Optional<User> findUserByID(UserID id) {
+        SearchRequest searchRequest = SearchRequest.newBuilder().setUser(id.toString()).build();
 
         com.rlgino.CardsService.infrastructure.usersproto.User user = stub.searchUser(searchRequest);
 

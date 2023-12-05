@@ -42,7 +42,8 @@ curl --location 'localhost:8080/card' \
     "brand": "VISA",
     "name": "Test",
     "lastName": "Pepe",
-    "date": "05/2028"
+    "date": "05/2028",
+    "userID": "17d8bfac-361b-4b5b-b9bc-a576b384f7c1"
 }'
 ```
 
@@ -130,4 +131,4 @@ protoc --plugin=protoc-gen-grpc-java=${PWD}/protoc-gen-grpc-java.exe \
 * [gRPC Java Codegen Plugin for Protobuf Compiler](https://github.com/grpc/grpc-java/blob/master/compiler/README.md)
 
 ### Next steps:
-Adding protobuf integration...
+Add some design patterns

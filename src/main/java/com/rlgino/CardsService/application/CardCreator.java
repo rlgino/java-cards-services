@@ -21,9 +21,9 @@ public class CardCreator {
         this.event = cardCreatedEvent;
     }
 
-    public void Execute(Card card, String userID){
-        Optional<User> userByID = this.userRepository.findUserByID(userID);
-        if (userByID.isEmpty()) throw new UserNotFoundException(userID);
+    public void Execute(Card card){
+        Optional<User> userByID = this.userRepository.findUserByID(card.userID());
+        if (userByID.isEmpty()) throw new UserNotFoundException(card.userID().toString());
         this.repository.SaveCard(card);
 
         event.Send(card);

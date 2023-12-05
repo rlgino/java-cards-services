@@ -31,10 +31,9 @@ public class CardCreatorShouldTest {
     @Test
     public void createACardSuccessfully(){
         Card card = CardMother.createCardRandom();
-        final UserID userID = UserIDMother.generate();
-        when(this.userRepository.findUserByID(userID.toString())).thenReturn(Optional.of(new User()));
+        when(this.userRepository.findUserByID(card.userID())).thenReturn(Optional.of(new User()));
 
-        this.creator.Execute(card, userID.toString());
+        this.creator.Execute(card);
 
         verify(this.cardRepository, times(1)).SaveCard(card);
         verify(this.event, times(1)).Send(card);
@@ -43,11 +42,10 @@ public class CardCreatorShouldTest {
     @Test
     public void createACardNotUserFound(){
         Card card = CardMother.createCardRandom();
-        String userID = "1c4425e2-308a-4ced-82f3-dd050342c8c7";
-        when(this.userRepository.findUserByID(userID)).thenReturn(Optional.empty());
+        when(this.userRepository.findUserByID(card.userID())).thenReturn(Optional.empty());
 
         Exception exception = assertThrows(UserNotFoundException.class, () -> {
-            this.creator.Execute(card, userID);
+            this.creator.Execute(card);
         });
 
         String expectedMessage = "User not found 1c4425e2-308a-4ced-82f3-dd050342c8c7";
