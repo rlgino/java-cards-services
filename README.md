@@ -152,3 +152,4 @@ public class AcceptanceTestConfiguration {
 ### Next steps:
 Add Either [from baeldung](https://www.baeldung.com/vavr-either)
 Add some design patterns
+Add [open API login and basic Authentication](https://www.baeldung.com/springdoc-openapi-form-login-and-basic-authentication)

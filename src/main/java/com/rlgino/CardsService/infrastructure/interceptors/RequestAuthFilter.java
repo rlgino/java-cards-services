@@ -1,7 +1,7 @@
 package com.rlgino.CardsService.infrastructure.interceptors;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
@@ -18,18 +18,13 @@ public class RequestAuthFilter implements Filter {
 
         log.info("BasicAuthInterceptor::preHandle()");
 
-        HttpServletRequest req = (HttpServletRequest) request;
-        if(req.getRequestURI().contains("swagger-ui")) return;
+        HttpServletRequest req = (HttpServletRequest)request;
+        log.info("{} --> {}", req.getMethod(), req.getRequestURI());
 
-        String authHeader = req.getHeader("Authorization");
-        if (authHeader != null && authHeader.startsWith("Barear ")) {
-            if (authHeader.contains("admin")){
-                chain.doFilter(request, response);
-                return;
-            }
-        }
-
-        HttpServletResponse resp = (HttpServletResponse) response;
-        resp.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Unauthorized");
+        long start = System.currentTimeMillis();
+        chain.doFilter(req, response);
+        long finish = System.currentTimeMillis();
+        long timeElapsed = finish - start;
+        log.info("Elapsed time: {} ms", timeElapsed);
     }
 }
