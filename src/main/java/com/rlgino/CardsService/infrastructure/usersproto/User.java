@@ -19,6 +19,8 @@ private static final long serialVersionUID = 0L;
   private User() {
     id_ = "";
     name_ = "";
+    lastName_ = "";
+    datetime_ = "";
     status_ = 0;
   }
 
@@ -228,17 +230,95 @@ private static final long serialVersionUID = 0L;
     }
   }
 
-  public static final int STATUS_FIELD_NUMBER = 3;
+  public static final int LASTNAME_FIELD_NUMBER = 3;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object lastName_ = "";
+  /**
+   * <code>string lastName = 3;</code>
+   * @return The lastName.
+   */
+  @java.lang.Override
+  public java.lang.String getLastName() {
+    java.lang.Object ref = lastName_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      lastName_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string lastName = 3;</code>
+   * @return The bytes for lastName.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getLastNameBytes() {
+    java.lang.Object ref = lastName_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      lastName_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int DATETIME_FIELD_NUMBER = 4;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object datetime_ = "";
+  /**
+   * <code>string datetime = 4;</code>
+   * @return The datetime.
+   */
+  @java.lang.Override
+  public java.lang.String getDatetime() {
+    java.lang.Object ref = datetime_;
+    if (ref instanceof java.lang.String) {
+      return (java.lang.String) ref;
+    } else {
+      com.google.protobuf.ByteString bs = 
+          (com.google.protobuf.ByteString) ref;
+      java.lang.String s = bs.toStringUtf8();
+      datetime_ = s;
+      return s;
+    }
+  }
+  /**
+   * <code>string datetime = 4;</code>
+   * @return The bytes for datetime.
+   */
+  @java.lang.Override
+  public com.google.protobuf.ByteString
+      getDatetimeBytes() {
+    java.lang.Object ref = datetime_;
+    if (ref instanceof java.lang.String) {
+      com.google.protobuf.ByteString b = 
+          com.google.protobuf.ByteString.copyFromUtf8(
+              (java.lang.String) ref);
+      datetime_ = b;
+      return b;
+    } else {
+      return (com.google.protobuf.ByteString) ref;
+    }
+  }
+
+  public static final int STATUS_FIELD_NUMBER = 5;
   private int status_ = 0;
   /**
-   * <code>.usersproto.User.ItemStatus status = 3;</code>
+   * <code>.usersproto.User.ItemStatus status = 5;</code>
    * @return The enum numeric value on the wire for status.
    */
   @java.lang.Override public int getStatusValue() {
     return status_;
   }
   /**
-   * <code>.usersproto.User.ItemStatus status = 3;</code>
+   * <code>.usersproto.User.ItemStatus status = 5;</code>
    * @return The status.
    */
   @java.lang.Override public com.rlgino.CardsService.infrastructure.usersproto.User.ItemStatus getStatus() {
@@ -266,8 +346,14 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
       com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(lastName_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 3, lastName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datetime_)) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 4, datetime_);
+    }
     if (status_ != com.rlgino.CardsService.infrastructure.usersproto.User.ItemStatus.INACTIVE.getNumber()) {
-      output.writeEnum(3, status_);
+      output.writeEnum(5, status_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -284,9 +370,15 @@ private static final long serialVersionUID = 0L;
     if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(name_)) {
       size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
     }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(lastName_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, lastName_);
+    }
+    if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(datetime_)) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(4, datetime_);
+    }
     if (status_ != com.rlgino.CardsService.infrastructure.usersproto.User.ItemStatus.INACTIVE.getNumber()) {
       size += com.google.protobuf.CodedOutputStream
-        .computeEnumSize(3, status_);
+        .computeEnumSize(5, status_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -307,6 +399,10 @@ private static final long serialVersionUID = 0L;
         .equals(other.getId())) return false;
     if (!getName()
         .equals(other.getName())) return false;
+    if (!getLastName()
+        .equals(other.getLastName())) return false;
+    if (!getDatetime()
+        .equals(other.getDatetime())) return false;
     if (status_ != other.status_) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
@@ -323,6 +419,10 @@ private static final long serialVersionUID = 0L;
     hash = (53 * hash) + getId().hashCode();
     hash = (37 * hash) + NAME_FIELD_NUMBER;
     hash = (53 * hash) + getName().hashCode();
+    hash = (37 * hash) + LASTNAME_FIELD_NUMBER;
+    hash = (53 * hash) + getLastName().hashCode();
+    hash = (37 * hash) + DATETIME_FIELD_NUMBER;
+    hash = (53 * hash) + getDatetime().hashCode();
     hash = (37 * hash) + STATUS_FIELD_NUMBER;
     hash = (53 * hash) + status_;
     hash = (29 * hash) + getUnknownFields().hashCode();
@@ -458,6 +558,8 @@ private static final long serialVersionUID = 0L;
       bitField0_ = 0;
       id_ = "";
       name_ = "";
+      lastName_ = "";
+      datetime_ = "";
       status_ = 0;
       return this;
     }
@@ -499,6 +601,12 @@ private static final long serialVersionUID = 0L;
         result.name_ = name_;
       }
       if (((from_bitField0_ & 0x00000004) != 0)) {
+        result.lastName_ = lastName_;
+      }
+      if (((from_bitField0_ & 0x00000008) != 0)) {
+        result.datetime_ = datetime_;
+      }
+      if (((from_bitField0_ & 0x00000010) != 0)) {
         result.status_ = status_;
       }
     }
@@ -557,6 +665,16 @@ private static final long serialVersionUID = 0L;
         bitField0_ |= 0x00000002;
         onChanged();
       }
+      if (!other.getLastName().isEmpty()) {
+        lastName_ = other.lastName_;
+        bitField0_ |= 0x00000004;
+        onChanged();
+      }
+      if (!other.getDatetime().isEmpty()) {
+        datetime_ = other.datetime_;
+        bitField0_ |= 0x00000008;
+        onChanged();
+      }
       if (other.status_ != 0) {
         setStatusValue(other.getStatusValue());
       }
@@ -596,11 +714,21 @@ private static final long serialVersionUID = 0L;
               bitField0_ |= 0x00000002;
               break;
             } // case 18
-            case 24: {
-              status_ = input.readEnum();
+            case 26: {
+              lastName_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000004;
               break;
-            } // case 24
+            } // case 26
+            case 34: {
+              datetime_ = input.readStringRequireUtf8();
+              bitField0_ |= 0x00000008;
+              break;
+            } // case 34
+            case 40: {
+              status_ = input.readEnum();
+              bitField0_ |= 0x00000010;
+              break;
+            } // case 40
             default: {
               if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                 done = true; // was an endgroup tag
@@ -762,27 +890,171 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
+    private java.lang.Object lastName_ = "";
+    /**
+     * <code>string lastName = 3;</code>
+     * @return The lastName.
+     */
+    public java.lang.String getLastName() {
+      java.lang.Object ref = lastName_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        lastName_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string lastName = 3;</code>
+     * @return The bytes for lastName.
+     */
+    public com.google.protobuf.ByteString
+        getLastNameBytes() {
+      java.lang.Object ref = lastName_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        lastName_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string lastName = 3;</code>
+     * @param value The lastName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLastName(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      lastName_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string lastName = 3;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearLastName() {
+      lastName_ = getDefaultInstance().getLastName();
+      bitField0_ = (bitField0_ & ~0x00000004);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string lastName = 3;</code>
+     * @param value The bytes for lastName to set.
+     * @return This builder for chaining.
+     */
+    public Builder setLastNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      lastName_ = value;
+      bitField0_ |= 0x00000004;
+      onChanged();
+      return this;
+    }
+
+    private java.lang.Object datetime_ = "";
+    /**
+     * <code>string datetime = 4;</code>
+     * @return The datetime.
+     */
+    public java.lang.String getDatetime() {
+      java.lang.Object ref = datetime_;
+      if (!(ref instanceof java.lang.String)) {
+        com.google.protobuf.ByteString bs =
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        datetime_ = s;
+        return s;
+      } else {
+        return (java.lang.String) ref;
+      }
+    }
+    /**
+     * <code>string datetime = 4;</code>
+     * @return The bytes for datetime.
+     */
+    public com.google.protobuf.ByteString
+        getDatetimeBytes() {
+      java.lang.Object ref = datetime_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        datetime_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    /**
+     * <code>string datetime = 4;</code>
+     * @param value The datetime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDatetime(
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      datetime_ = value;
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string datetime = 4;</code>
+     * @return This builder for chaining.
+     */
+    public Builder clearDatetime() {
+      datetime_ = getDefaultInstance().getDatetime();
+      bitField0_ = (bitField0_ & ~0x00000008);
+      onChanged();
+      return this;
+    }
+    /**
+     * <code>string datetime = 4;</code>
+     * @param value The bytes for datetime to set.
+     * @return This builder for chaining.
+     */
+    public Builder setDatetimeBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      datetime_ = value;
+      bitField0_ |= 0x00000008;
+      onChanged();
+      return this;
+    }
+
     private int status_ = 0;
     /**
-     * <code>.usersproto.User.ItemStatus status = 3;</code>
+     * <code>.usersproto.User.ItemStatus status = 5;</code>
      * @return The enum numeric value on the wire for status.
      */
     @java.lang.Override public int getStatusValue() {
       return status_;
     }
     /**
-     * <code>.usersproto.User.ItemStatus status = 3;</code>
+     * <code>.usersproto.User.ItemStatus status = 5;</code>
      * @param value The enum numeric value on the wire for status to set.
      * @return This builder for chaining.
      */
     public Builder setStatusValue(int value) {
       status_ = value;
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       onChanged();
       return this;
     }
     /**
-     * <code>.usersproto.User.ItemStatus status = 3;</code>
+     * <code>.usersproto.User.ItemStatus status = 5;</code>
      * @return The status.
      */
     @java.lang.Override
@@ -791,7 +1063,7 @@ private static final long serialVersionUID = 0L;
       return result == null ? com.rlgino.CardsService.infrastructure.usersproto.User.ItemStatus.UNRECOGNIZED : result;
     }
     /**
-     * <code>.usersproto.User.ItemStatus status = 3;</code>
+     * <code>.usersproto.User.ItemStatus status = 5;</code>
      * @param value The status to set.
      * @return This builder for chaining.
      */
@@ -799,17 +1071,17 @@ private static final long serialVersionUID = 0L;
       if (value == null) {
         throw new NullPointerException();
       }
-      bitField0_ |= 0x00000004;
+      bitField0_ |= 0x00000010;
       status_ = value.getNumber();
       onChanged();
       return this;
     }
     /**
-     * <code>.usersproto.User.ItemStatus status = 3;</code>
+     * <code>.usersproto.User.ItemStatus status = 5;</code>
      * @return This builder for chaining.
      */
     public Builder clearStatus() {
-      bitField0_ = (bitField0_ & ~0x00000004);
+      bitField0_ = (bitField0_ & ~0x00000010);
       status_ = 0;
       onChanged();
       return this;

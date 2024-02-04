@@ -33,12 +33,36 @@ public interface UserOrBuilder extends
       getNameBytes();
 
   /**
-   * <code>.usersproto.User.ItemStatus status = 3;</code>
+   * <code>string lastName = 3;</code>
+   * @return The lastName.
+   */
+  java.lang.String getLastName();
+  /**
+   * <code>string lastName = 3;</code>
+   * @return The bytes for lastName.
+   */
+  com.google.protobuf.ByteString
+      getLastNameBytes();
+
+  /**
+   * <code>string datetime = 4;</code>
+   * @return The datetime.
+   */
+  java.lang.String getDatetime();
+  /**
+   * <code>string datetime = 4;</code>
+   * @return The bytes for datetime.
+   */
+  com.google.protobuf.ByteString
+      getDatetimeBytes();
+
+  /**
+   * <code>.usersproto.User.ItemStatus status = 5;</code>
    * @return The enum numeric value on the wire for status.
    */
   int getStatusValue();
   /**
-   * <code>.usersproto.User.ItemStatus status = 3;</code>
+   * <code>.usersproto.User.ItemStatus status = 5;</code>
    * @return The status.
    */
   com.rlgino.CardsService.infrastructure.usersproto.User.ItemStatus getStatus();

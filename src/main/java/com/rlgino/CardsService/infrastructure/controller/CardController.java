@@ -38,7 +38,7 @@ public class CardController {
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema()) }),
     })
     @GetMapping("/{id}")
-    public ResponseEntity<CardDTO> findCard(@PathVariable String id) {
+    public ResponseEntity<CardDTO> findCard(@PathVariable @Schema(example = "95854717-f395-455e-b610-95bd85d9adb1") String id) {
         try {
             final CardNumber cardNumber = new CardNumber(id);
             Card cardResult = this.cardFinder.call(cardNumber);
@@ -67,7 +67,7 @@ public class CardController {
             final Brand brand = Brand.valueOf(createCardRequest.getBrand());
             final CardHolder cardHolder = new CardHolder(createCardRequest.getName(), createCardRequest.getLastName());
             final UserID userID = UserID.from(createCardRequest.getUserID());
-            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDate()), userID));
+            cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDueDate()), userID));
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("Marca inválida", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
@@ -78,11 +78,15 @@ public class CardController {
 }
 
 final class CardDTO {
+    @Schema(example = "95854717-f395-455e-b610-95bd85d9adb1", format = "uuid", type = "string")
     private String cardNumber;
+    @Schema(type = "string", allowableValues = { "VISA", "NARA", "AMEX" })
     private String brand;
     private String name;
     private String lastName;
-    private String date;
+    @Schema(example = "04/2024")
+    private String dueDate;
+    @Schema(example = "95854717-f395-455e-b610-95bd85d9adb1", format = "uuid", type = "string")
     private String userID;
 
     public CardDTO(String cardNumber, String brand, String name, String lastName, String date, String userID) {
@@ -90,7 +94,7 @@ final class CardDTO {
         this.brand = brand;
         this.name = name;
         this.lastName = lastName;
-        this.date = date;
+        this.dueDate = date;
         this.userID = userID;
     }
 
@@ -106,8 +110,8 @@ final class CardDTO {
         return lastName;
     }
 
-    public String getDate() {
-        return date;
+    public String getDueDate() {
+        return dueDate;
     }
 
     public String getBrand() {

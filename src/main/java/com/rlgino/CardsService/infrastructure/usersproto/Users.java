@@ -34,15 +34,16 @@ public final class Users {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\013users.proto\022\nusersproto\"u\n\004User\022\n\n\002id\030" +
-      "\001 \001(\t\022\014\n\004name\030\002 \001(\t\022+\n\006status\030\003 \001(\0162\033.us" +
-      "ersproto.User.ItemStatus\"&\n\nItemStatus\022\014" +
-      "\n\010INACTIVE\020\000\022\n\n\006ACTIVE\020\001\"\035\n\rSearchReques" +
-      "t\022\014\n\004user\030\001 \001(\t2H\n\013UserService\0229\n\nSearch" +
-      "User\022\031.usersproto.SearchRequest\032\020.usersp" +
-      "roto.UserBL\n1com.rlgino.CardsService.inf" +
-      "rastructure.usersprotoP\001Z\025grpcServer/use" +
-      "rsprotob\006proto3"
+      "\n\013users.proto\022\nusersproto\"\231\001\n\004User\022\n\n\002id" +
+      "\030\001 \001(\t\022\014\n\004name\030\002 \001(\t\022\020\n\010lastName\030\003 \001(\t\022\020" +
+      "\n\010datetime\030\004 \001(\t\022+\n\006status\030\005 \001(\0162\033.users" +
+      "proto.User.ItemStatus\"&\n\nItemStatus\022\014\n\010I" +
+      "NACTIVE\020\000\022\n\n\006ACTIVE\020\001\"\035\n\rSearchRequest\022\014" +
+      "\n\004user\030\001 \001(\t2H\n\013UserService\0229\n\nSearchUse" +
+      "r\022\031.usersproto.SearchRequest\032\020.usersprot" +
+      "o.UserBL\n1com.rlgino.CardsService.infras" +
+      "tructure.usersprotoP\001Z\025grpcServer/usersp" +
+      "rotob\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -53,7 +54,7 @@ public final class Users {
     internal_static_usersproto_User_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_usersproto_User_descriptor,
-        new java.lang.String[] { "Id", "Name", "Status", });
+        new java.lang.String[] { "Id", "Name", "LastName", "Datetime", "Status", });
     internal_static_usersproto_SearchRequest_descriptor =
       getDescriptor().getMessageTypes().get(1);
     internal_static_usersproto_SearchRequest_fieldAccessorTable = new
