@@ -88,7 +88,7 @@ public class AcceptanceTest extends PostgresContainerTest {
                 "    \"brand\": \"VISA\",\n" +
                 "    \"name\": \"Gino\",\n" +
                 "    \"lastName\": \"Luraschi\",\n" +
-                "    \"date\": \"10/2025\",\n" +
+                "    \"dueDate\": \"10/2025\",\n" +
                 "    \"userID\":\"1c4425e2-308a-4ced-82f3-dd050342c8c7\""+
                 "}";
         this.mockMvc.perform(post("/card").contentType(APPLICATION_JSON_UTF8).content(bodyRequest))
@@ -112,7 +112,7 @@ public class AcceptanceTest extends PostgresContainerTest {
                 .andDo(print()).andExpect(status().isOk())
                 .andReturn();
 
-        String bodyExpected = "{\"cardNumber\":\"1234123412341234\",\"brand\":\"visa\",\"name\":\"test test\",\"lastName\":\"\",\"date\":\"02/2025\",\"userID\":\"TBD\"}";
+        String bodyExpected = "{\"cardNumber\":\"1234123412341234\",\"brand\":\"visa\",\"name\":\"test test\",\"lastName\":\"\",\"dueDate\":\"02/2025\",\"userID\":\"TBD\"}";
         assertEquals("application/json",
                 mvcResult.getResponse().getContentType());
         assertEquals(bodyExpected, mvcResult.getResponse().getContentAsString());
