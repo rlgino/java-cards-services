@@ -57,7 +57,15 @@ For this case, I added a new library for document API end-points, the dependency
 You can see the generated documentation in `http://localhost:8080/swagger-ui/index.html`. Or you can see the swagger-oas.json file in `http://localhost:8080/api-docs`
 
 ## Security implementation
-TBD
+For this use case, I'm using JWT for authentication. For using this technique I followed the next steps:
+1. Install dependencies:
+```groovy
+implementation 'io.jsonwebtoken:jjwt:0.9.1'
+implementation 'javax.xml.bind:jaxb-api:2.3.1'
+```
+2. I created a new JwtUtils class where I generate the JWT for a username and after extract the username for validate in the future. 
+3. I generated a new endpoint for login requests where I return the JTW valid for certain time
+4. Added a new Filter that allow just to send request to `/login` and `/api-docs` routes. For the rest of endpoints I just validate the auth token.
 
 ## Error handling
 TBD
@@ -148,6 +156,7 @@ public class AcceptanceTestConfiguration {
 * [Spring Boot + Swagger 3 example (with OpenAPI 3) - BezKoder](https://www.bezkoder.com/spring-boot-swagger-3/)
 * [Introduction to Google Protocol Buffer](https://www.baeldung.com/google-protocol-buffer)
 * [gRPC Java Codegen Plugin for Protobuf Compiler](https://github.com/grpc/grpc-java/blob/master/compiler/README.md)
+* [Implementing JWT Authentication in a Spring Boot Application](https://medium.com/@thecodebean/implementing-jwt-authentication-in-a-spring-boot-application-5a7a94d785d1)
 
 ### Next steps:
 Add Either [from baeldung](https://www.baeldung.com/vavr-either)
