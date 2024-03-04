@@ -47,6 +47,11 @@ curl --location 'localhost:8080/card' \
 }'
 ```
 
+## Design Patterns
+
+### Factory
+I used Factory pattern for creating ways to calculate Tax for the distinct cards, you can find the factory class in `com.rlgino.CardsService.domain.calculator.CalculatorFactory`
+
 ## Why Java?
 In this case I'm using Java because it's one of the most known object-oriented programming language, which is mature and has lot of facilities. In addition, Spring boot offers a big
 stack for building API and applications with all the SDK.
