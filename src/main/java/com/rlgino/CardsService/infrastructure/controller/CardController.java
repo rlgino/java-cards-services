@@ -6,17 +6,21 @@ import com.rlgino.CardsService.domain.*;
 import com.rlgino.CardsService.domain.exception.CardNotFoundException;
 import com.rlgino.CardsService.domain.users.UserID;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@Slf4j
 @RequestMapping("/card")
 @Tag(name = "card", description = "Manage card objects")
 public class CardController {
@@ -58,8 +62,10 @@ public class CardController {
             @ApiResponse(responseCode = "201", content = { @Content(schema = @Schema(implementation = CardDTO.class), mediaType = "application/json") }),
             @ApiResponse(responseCode = "400", content = { @Content(schema = @Schema()) }),
     })
+    @Parameter(description = "Auth token", required = true, name = "auth", in = ParameterIn.HEADER)
     @PostMapping
-    public ResponseEntity<String> CreateCard(@RequestBody CardDTO createCardRequest) {
+    public ResponseEntity<String> CreateCard(
+            @RequestBody CardDTO createCardRequest) {
         try {
             final CardNumber cardNumber = new CardNumber(createCardRequest.getCardNumber());
             if (createCardRequest.getBrand() == null)
@@ -69,9 +75,11 @@ public class CardController {
             final UserID userID = UserID.from(createCardRequest.getUserID());
             cardCreator.Execute(new Card(cardNumber, brand, cardHolder, CardDueDate.from(createCardRequest.getDueDate()), userID));
         } catch (IllegalArgumentException e) {
+            log.error("{}", e.getMessage());
             return new ResponseEntity<>("Marca inválida", HttpStatus.BAD_REQUEST);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+            log.error("{}", e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
