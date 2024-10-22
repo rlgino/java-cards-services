@@ -145,8 +145,9 @@ public class AcceptanceTestConfiguration {
 ````
 
 ## Associated Repositories
-[Java Cards service](https://github.com/rlgino/java-cards-services)
-[Go User Service](https://github.com/rlgino/go-users-service)
+* [Java Cards service](https://github.com/rlgino/java-cards-services)
+* [Go User Service](https://github.com/rlgino/go-users-service)
+* [Java Order service - coming](https://github.com/rlgino/java-orders-challenge)
 
 ## Tools and techniques
 * TDD
@@ -164,6 +165,6 @@ public class AcceptanceTestConfiguration {
 * [Implementing JWT Authentication in a Spring Boot Application](https://medium.com/@thecodebean/implementing-jwt-authentication-in-a-spring-boot-application-5a7a94d785d1)
 
 ### Next steps:
-Add Either [from baeldung](https://www.baeldung.com/vavr-either)
-Add some design patterns
-Add [open API login and basic Authentication](https://www.baeldung.com/springdoc-openapi-form-login-and-basic-authentication)
+* Add Either [from baeldung](https://www.baeldung.com/vavr-either)
+* Add some design patterns
+* Add [open API login and basic Authentication](https://www.baeldung.com/springdoc-openapi-form-login-and-basic-authentication)
