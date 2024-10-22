@@ -1,12 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '3.2.2'
+	id 'org.springframework.boot' version '3.3.0'
 	id 'io.spring.dependency-management' version '1.1.4'
 	id 'java'
 }
 
 group = 'com.rlgino.challenge'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
@@ -35,13 +34,13 @@ dependencies {
 	implementation 'org.hibernate.orm:hibernate-core:6.1.4.Final'
 	runtimeOnly 'org.postgresql:postgresql'
 	compileOnly 'org.projectlombok:lombok'
-	compileOnly group: 'org.springframework.boot', name: 'spring-boot-starter-json', version: '2.3.1.RELEASE'
+	compileOnly 'org.springframework.boot:spring-boot-starter-json'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.junit.jupiter:junit-jupiter-api'
 	testImplementation 'org.junit.jupiter:junit-jupiter-engine'
-	testImplementation("org.testcontainers:postgresql:1.18.0")
-	testImplementation("org.testcontainers:junit-jupiter:1.18.0")
+	testImplementation 'org.testcontainers:postgresql:1.20.2'
+	testImplementation("org.testcontainers:junit-jupiter:1.20.2")
 }
 
 tasks.named('test') {
