@@ -3,14 +3,9 @@ package com.rlgino.CardsService.domain;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class CardDueDate {
-    private final LocalDate dueDate;
+public record CardDueDate (LocalDate dueDate) {
     public final static String LAYOUT = "MM/yyyy";
     public final static DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(LAYOUT);
-
-    private CardDueDate(LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
 
     public static CardDueDate from(String dueDate) {
         final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd/" + LAYOUT);
@@ -25,13 +20,5 @@ public class CardDueDate {
     @Override
     public String toString() {
         return this.dueDate.format(FORMATTER);
-    }
-
-    public int getYear() {
-        return this.dueDate.getYear()%2000; //TODO: Review
-    }
-
-    public int getMonth() {
-        return this.dueDate.getMonth().getValue();
     }
 }

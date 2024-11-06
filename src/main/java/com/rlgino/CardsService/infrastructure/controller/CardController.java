@@ -13,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -85,6 +86,7 @@ public class CardController {
     }
 }
 
+@Getter
 final class CardDTO {
     @Schema(example = "95854717-f395-455e-b610-95bd85d9adb1", format = "uuid", type = "string")
     private String cardNumber;
@@ -104,30 +106,6 @@ final class CardDTO {
         this.lastName = lastName;
         this.dueDate = date;
         this.userID = userID;
-    }
-
-    public String getCardNumber() {
-        return cardNumber;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getDueDate() {
-        return dueDate;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public String getUserID() {
-        return userID;
     }
 
 }

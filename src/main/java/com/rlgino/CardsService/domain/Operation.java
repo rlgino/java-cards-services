@@ -1,12 +1,12 @@
 package com.rlgino.CardsService.domain;
 
-public final class Operation {
-    private final Card card;
-    private final Amount operationAmount;
+import java.util.Objects;
 
-    public Operation(Card card, Amount operationAmount) {
-        this.card = card;
-        this.operationAmount = operationAmount;
+public record Operation (Card card, Amount operationAmount) {
+
+    public Operation{
+        Objects.requireNonNull(card, "Card couldn't be null");
+        Objects.requireNonNull(operationAmount, "Operation amount couldn't be null");
     }
 
     public Boolean isValid() {
